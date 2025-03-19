@@ -182,14 +182,17 @@ def count_feature_usage(model, multinomial, n_features, tolerance=1e-10):
     if multinomial:
         feature_inclusion_matrix =  np.abs(model.betas.toarray().reshape((model.betas.shape[0], -1, n_features))).mean(axis=1) > tolerance
         sign_mtx = np.argmax(model.betas.toarray().reshape((model.betas.shape[0], -1, n_features)), axis=1)
+        magnitude_mtx = np.max(model.betas.toarray().reshape((model.betas.shape[0], -1, n_features)), axis=1)
     else:
         feature_inclusion_matrix = np.abs(model.betas.toarray()) > tolerance
         sign_mtx = np.sign(model.betas.toarray())
+        magnitude_mtx = np.abs(model.betas.toarray())
 
     # Convert to a DataFrame for easier interpretation
     feature_inclusion_df = pd.DataFrame(feature_inclusion_matrix, columns=[f"Feature_{j+1}" for j in range(n_features)])
     sign_df = pd.DataFrame(sign_mtx, columns=[f"Feature_Sign_{j+1}" for j in range(n_features)])
-    return feature_inclusion_df, sign_df
+    magnitude_df = pd.DataFrame(magnitude_mtx, columns=[f"Feature_Magnitude{j+1}" for j in range(n_features)])
+    return feature_inclusion_df, sign_df, magnitude_df
     
 
 def llm_lasso_cv(
@@ -363,14 +366,14 @@ def llm_lasso_cv(
                     for coeffs in model.betas.toarray()
             ]
 
-        (feature_count_raw, signs_raw) = count_feature_usage(model,  multinomial, x_train.shape[1], tolerance=tolerance)
+        (feature_count_raw, signs_raw, magnitudes_raw) = count_feature_usage(model,  multinomial, x_train.shape[1], tolerance=tolerance)
 
         df = pd.DataFrame({
             'n_features': non_zero_coefs_raw,
             'test_error': test_error_raw,
             "auroc": roc_auc_raw
         })
-        df = pd.concat([df, feature_count_raw, signs_raw], axis=1)
+        df = pd.concat([df, feature_count_raw, signs_raw, magnitudes_raw], axis=1)
         df["best_method_model"] = best_model
         df["method"] = score_name
 

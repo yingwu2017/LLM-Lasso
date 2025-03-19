@@ -18,6 +18,8 @@ from ucimlrepo import fetch_ucirepo
 import pickle
 import pandas as pd
 import kagglehub
+import numpy as np
+
 
 def process_glioma():
     """
@@ -204,6 +206,7 @@ def get_uci_feature_names(matrix, data_name, save_dir="small_scale/data/"):
 
     # Create a dictionary of feature names and descriptions
     feature_dict = {}
+    feature_names = []
     for _, row in features.iterrows():
         # Process the feature name
         feature_name = row['name'].replace('_', ' ')
@@ -213,6 +216,7 @@ def get_uci_feature_names(matrix, data_name, save_dir="small_scale/data/"):
             feature_dict[feature_name] = row['description']
         else:
             feature_dict[feature_name] = f"{feature_name}"
+        feature_names.append(feature_name)
 
     # Ensure save_dir exists
     os.makedirs(save_dir, exist_ok=True)
@@ -225,7 +229,7 @@ def get_uci_feature_names(matrix, data_name, save_dir="small_scale/data/"):
         json.dump(feature_dict, file, indent=4)
 
     print(f"Processed feature names and descriptions saved to: {save_path}")
-    return feature_dict, save_path
+    return feature_names, save_path
 
 
 
@@ -245,5 +249,8 @@ def load_uci_data(data_name):
     X = uci_data.data.features.to_numpy()
     y = uci_data.data.targets.squeeze().tolist()
     feat_names, feat_dir = get_uci_feature_names(uci_data.variables, data_name)
+    with open(feat_dir.replace("json", "pkl"), "wb") as f:
+        pickle.dump(np.array(feat_names), f)
+
     return X, y, feat_names, feat_dir
 

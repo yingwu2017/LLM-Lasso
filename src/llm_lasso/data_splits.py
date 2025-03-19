@@ -32,7 +32,22 @@ def balanced_folds(data_labels, nfolds=None):
     return [np.array(fold) for fold in folds]
 
 
-def save_train_test_splits(X: pd.DataFrame, y: pd.Series, save_dir: str, n_splits=10, seed=0):
+def folds(ndata, nfolds):
+    """
+    Creates equal-size folds such that different folds an equal proportion
+    of each class.
+    """
+    indices = np.arange(ndata)
+
+    # Distribute indices into folds
+    folds = [[] for _ in range(nfolds)]
+    for i, idx in enumerate(indices):
+        folds[i % nfolds].append(idx)
+
+    return [np.array(fold) for fold in folds]
+
+
+def save_train_test_splits(X: pd.DataFrame, y: pd.Series, save_dir: str, balanced: bool, n_splits=10, seed=0):
     """
     Divides a dataset into 50/50 train-test folds, for `n_splits` differet
     random seeds. Saves all splits to CSV files
@@ -49,7 +64,11 @@ def save_train_test_splits(X: pd.DataFrame, y: pd.Series, save_dir: str, n_split
     for i in range(n_splits):
         np.random.seed(seed + i)
 
-        train_idxs, test_idxs = balanced_folds(y, nfolds=2)
+        if balanced:
+            train_idxs, test_idxs = balanced_folds(y, nfolds=2)
+        else:
+            train_idxs, test_idxs = folds(len(y), nfolds=2)
+            
         x_train = X.loc[train_idxs]
         x_test = X.loc[test_idxs]
 
