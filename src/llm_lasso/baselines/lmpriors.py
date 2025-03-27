@@ -79,7 +79,7 @@ def query_lmpriors(
     max_retries=5  # maximum retry attempts
 ):
     """
-    Get LMpriors-selected features and save progress incrementally.
+    Get LMpriors-selected features, ranked by criterion score, with progress saved incrementally.
     """
     os.makedirs(save_dir, exist_ok=True)
     pkl_path = os.path.join(save_dir, "selected_features.pkl")
@@ -90,12 +90,14 @@ def query_lmpriors(
     # Load previous progress if it exists
     if not wipe and os.path.exists(pkl_path):
         with open(pkl_path, "rb") as f:
-            selected_feature_ls = pkl.load(f)
-        print(f"Resuming with {len(selected_feature_ls)} features already selected.")
+            selected_feature_tuples = pkl.load(f)
+        processed_feats = {feat for feat, _ in selected_feature_tuples}
+        print(f"Resuming with {len(selected_feature_tuples)} features already selected.")
     else:
-        selected_feature_ls = []
+        selected_feature_tuples = []
+        processed_feats = set()
         if wipe:
-            print("Wiping previous results.")
+            print("🧹 Wiping previous results.")
         with open(pkl_path, "wb") as f:
             pkl.dump([], f)
         with open(txt_path, "w") as f:
@@ -105,7 +107,7 @@ def query_lmpriors(
         feat_desc = json.load(f)
 
     for feat, desc in tqdm(feat_desc.items(), desc='Processing features...'):
-        if feat in selected_feature_ls:
+        if feat in processed_feats:
             continue  # Skip already processed
 
         retries = 0
@@ -152,13 +154,17 @@ def query_lmpriors(
 
         criterion = lmpriors_criterion(generated_token, token_logprob)
         if criterion >= threshold:
-            selected_feature_ls.append(feat)
+            selected_feature_tuples.append((feat, criterion))
 
-            # Incrementally write to files
+            # Save incrementally
             with open(pkl_path, "wb") as f:
-                pkl.dump(selected_feature_ls, f)
+                pkl.dump(selected_feature_tuples, f)
 
             with open(txt_path, "a") as f:
-                f.write(feat + "\n")
+                f.write(f"{feat}\t{criterion:.4f}\n")
+
+    # Sort by descending criterion score
+    selected_feature_tuples.sort(key=lambda x: -x[1])
+    selected_feature_ls = [feat for feat, _ in selected_feature_tuples]
 
     return selected_feature_ls
