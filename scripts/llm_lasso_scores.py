@@ -27,6 +27,9 @@ class Arguments:
     save_dir: str = field(metadata={
         "help": "Directory to save the results and scores."
     })
+    num_threads: int = field(default=1, metadata={
+        "help": "number of threads to use for prompting the LLM for scores. Parallelization ocurrs across batches. Default is singlethreaded."
+    })
 
 
 if __name__ == "__main__":
@@ -68,7 +71,9 @@ if __name__ == "__main__":
         vectorstore=vectorstore,
         model=model,
         params=penalty_params,
-        omim_api_key=constants.OMIM_KEYS[0]
+        omim_api_key=constants.OMIM_KEYS[0],
+        n_threads=args.num_threads,
+        parallel=args.num_threads > 1
     )
     print(f'Total number of scores collected: {len(all_scores)}.')
 

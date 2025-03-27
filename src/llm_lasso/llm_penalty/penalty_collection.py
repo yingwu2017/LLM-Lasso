@@ -13,6 +13,9 @@ import logging
 import json
 import numpy as np
 from tqdm import tqdm
+from multiprocessing import Pool
+from itertools import chain
+from sys import stdout
 
 
 @dataclass
@@ -81,6 +84,37 @@ def wipe_llm_penalties(save_dir, rag: bool):
             os.remove(file_path)
             logging.info(f"Removed file: {file_path}")
 
+def penalties_helper(
+    args: tuple[
+        str, str, PenaltyCollectionParams,
+        tuple, list[str]
+    ]
+):
+    (query, context, params, model_args, batch_features) = args
+    model = LLMQueryWrapperWithMemory(*model_args)
+    # Construct the prompt
+    if context != "":
+        full_prompt = f"Using the following context, provide the most accurate and relevant answer to the question. " \
+                        f"Prioritize the provided context, but if the context does not contain enough information to fully address the question, " \
+                        f"use your best general knowledge to complete the answer:\n\n{context}\n\nQuestion: {query}"
+    else:
+        # Fallback to general knowledge
+        full_prompt = f"Using your best general knowledge, provide the most accurate and relevant answer to the question:\n\nQuestion: {query}"
+    system_message = "You are an expert assistant with access to gene and cancer knowledge."
+
+    # Query the LLM, with special handling if the LLM allows
+    # structured queries
+    batch_scores_partial, output = query_scores_with_retries(
+        model, system_message, full_prompt,
+        batch_features, params.retry_limit
+    )
+
+    print(".", end="")
+    stdout.flush()
+    logging.info(batch_scores_partial)
+    model.maybe_add_to_memory(query, output)
+    return (batch_scores_partial, output)
+
 
 def collect_penalties(
     category: str,
@@ -91,6 +125,8 @@ def collect_penalties(
     model: LLMQueryWrapperWithMemory,
     params: PenaltyCollectionParams,
     omim_api_key: str = "",
+    parallel = True,
+    n_threads = 8
 ):
     """
     Query features in batches and extract LLM-Lasso penalties.
@@ -149,7 +185,8 @@ def collect_penalties(
             model.start_memory(params.memory_size)
 
         # loop through batches of genes
-        for start_idx in tqdm(range(0, total_features, params.batch_size), desc=f"Processing trial {trial + 1}..."):
+        args = []
+        for start_idx in tqdm(range(0, total_features, params.batch_size), desc=f"Prompt and context: trial {trial + 1}..."):
             end_idx = min(start_idx + params.batch_size, total_features)
             batch_features = [feature_names[i] for i in idxs[start_idx:end_idx]]
 
@@ -167,30 +204,45 @@ def collect_penalties(
                 default_num_docs=params.omim_rag_num_docs,
                 small=params.small,
             )
+            args.append((context, query, params, model.get_config(), batch_features))
+        if parallel: 
+            with Pool(n_threads) as p:
+                batch_scores_temp = []
+                outputs = p.map(penalties_helper, args)
+                print()
+                for (sc, res) in outputs:
+                    batch_scores_temp.extend(sc)
+                    results.extend(res)
 
-            # Construct the prompt
-            if context != "":
-                full_prompt = f"Using the following context, provide the most accurate and relevant answer to the question. " \
-                              f"Prioritize the provided context, but if the context does not contain enough information to fully address the question, " \
-                              f"use your best general knowledge to complete the answer:\n\n{context}\n\nQuestion: {query}"
-            else:
-                # Fallback to general knowledge
-                full_prompt = f"Using your best general knowledge, provide the most accurate and relevant answer to the question:\n\nQuestion: {query}"
-            system_message = "You are an expert assistant with access to gene and cancer knowledge."
+                batch_scores = [0] * len(idxs)
+                for (score_idx, feat_idx) in enumerate(idxs):
+                    batch_scores[feat_idx] = batch_scores_temp[score_idx] 
+        else:
+            batch_scores = []
+            for (context, query, _, _, batch_features) in tqdm(args, desc=f"LLM response: trial {trial + 1}..."):
+                # Construct the prompt
+                if context != "":
+                    full_prompt = f"Using the following context, provide the most accurate and relevant answer to the question. " \
+                                f"Prioritize the provided context, but if the context does not contain enough information to fully address the question, " \
+                                f"use your best general knowledge to complete the answer:\n\n{context}\n\nQuestion: {query}"
+                else:
+                    # Fallback to general knowledge
+                    full_prompt = f"Using your best general knowledge, provide the most accurate and relevant answer to the question:\n\nQuestion: {query}"
+                system_message = "You are an expert assistant with access to gene and cancer knowledge."
 
-            # Query the LLM, with special handling if the LLM allows
-            # structured queries
-            batch_scores_partial, output = query_scores_with_retries(
-                model, system_message, full_prompt,
-                batch_features, params.retry_limit
-            )
+                # Query the LLM, with special handling if the LLM allows
+                # structured queries
+                batch_scores_partial, output = query_scores_with_retries(
+                    model, system_message, full_prompt,
+                    batch_features, params.retry_limit
+                )
 
-            logging.info(f"Successfully retrieved valid scores for batch: {batch_features}")
-            batch_scores.extend(batch_scores_partial)
-            logging.info(batch_scores_partial)
-            model.maybe_add_to_memory(query, output)
-            results.append(output)
-        # end batches for loop
+                logging.info(f"Successfully retrieved valid scores for batch: {batch_features}")
+                batch_scores.extend(batch_scores_partial)
+                logging.info(batch_scores_partial)
+                model.maybe_add_to_memory(query, output)
+                results.append(output)
+                # end batches for loop
 
         if len(batch_scores) == total_features:
             trial_scores.append({"iteration": trial + 1, "scores": batch_scores})

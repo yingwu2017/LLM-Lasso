@@ -18,7 +18,7 @@ def query_scores_with_retries(
     system_message: str,
     full_prompt: str,
     batch_features: list[str],
-    retry_limit=10
+    retry_limit=50
 ) -> tuple[list[int], str]:
     """
     Query an LLM for feature scores, with automatic retries.

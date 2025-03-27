@@ -121,6 +121,9 @@ class LLMQueryWrapperWithMemory:
         self.memory = None
         self.last_query = None
 
+    def get_config(self):
+        return (self.llm_type, self.llm_name, self.api_key, self.temperature, self.top_p, self.repetition_penalty)
+
     def start_memory(
         self, memory_size, remember_outputs=True,
         default_output="Processing prompt, continuing from previous prompts"
