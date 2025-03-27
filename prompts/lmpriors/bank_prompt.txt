@@ -1,0 +1,19 @@
+This is a set of variables from a telemarketing campaign conducted by a Portuguese bank. The goal is to build a machine learning model to predict whether a client will subscribe to a term deposit.
+T means the variable is important for predicting the client’s subscription,
+F means the variable is not important for predicting the client’s subscription.
+The goal is to remove nuisance variables.
+--
+Variable: default
+Description: has credit in default?
+Answer: T
+Explanation: A client with credit in default may be less likely to commit to a long-term financial product, making this variable relevant for prediction.
+Variable: contact
+--
+Description: contact communication type (categorical: 'cellular','telephone')
+Answer: F
+Explanation: The contact method does not meaningfully relate to a client's likelihood of subscribing, and is more operational than behavioral.
+--
+Variable: {feature}
+Description: {description}
+Answer:
+

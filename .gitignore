@@ -6,3 +6,5 @@ data/
 omim_scrape/
 +!/omim_scrape/*.py
 _my_constants.py
+test.ipynb
+test/
