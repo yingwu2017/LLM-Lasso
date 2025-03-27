@@ -1,0 +1,25 @@
+{
+    "All Time Rank": "Rank of the track on Spotify's all-time streaming chart (lower rank means more streams)",
+    "Track Score": "Composite metric summarizing multiple indicators of a track’s performance",
+    "Spotify Playlist Count": "Number of official Spotify playlists the track appears on",
+    "Spotify Playlist Reach": "Cumulative number of followers of Spotify playlists that include the track",
+    "Spotify Popularity": "Spotify's internal popularity score (0–100) based on streams, skips, and other factors",
+    "YouTube Views": "Total number of views for the official music video or related content on YouTube",
+    "YouTube Likes": "Number of likes the track or its video has received on YouTube",
+    "TikTok Posts": "Number of TikTok videos that include the track",
+    "TikTok Likes": "Total likes across TikTok videos featuring the track",
+    "TikTok Views": "Total views across TikTok videos featuring the track",
+    "YouTube Playlist Reach": "Cumulative reach (followers/subscribers) of YouTube playlists featuring the track",
+    "Apple Music Playlist Count": "Number of Apple Music playlists the track is featured in",
+    "AirPlay Spins": "Number of times the track was played on traditional radio (AirPlay)",
+    "SiriusXM Spins": "Number of times the track was played on SiriusXM satellite radio",
+    "Deezer Playlist Count": "Number of Deezer playlists including the track",
+    "Deezer Playlist Reach": "Cumulative reach of Deezer playlists that feature the track",
+    "Amazon Playlist Count": "Number of Amazon Music playlists featuring the track",
+    "Pandora Streams": "Total number of times the track has been streamed on Pandora",
+    "Pandora Track Stations": "Number of Pandora user stations the track is part of",
+    "Soundcloud Streams": "Total number of SoundCloud streams for the track",
+    "Shazam Counts": "Number of times users identified the track using Shazam",
+    "Explicit Track": "Whether the track is labeled as explicit content (0 = No, 1 = Yes)"
+  }
+  

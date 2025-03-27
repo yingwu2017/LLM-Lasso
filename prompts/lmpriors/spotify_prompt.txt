@@ -1,0 +1,18 @@
+This is a set of music-related variables collected from the "Most Streamed Spotify Songs 2024" dataset. The goal is to build a machine learning model to predict the number of Spotify streams for a given track.
+T means the variable is important for predicting the number of Spotify streams,  
+F means the variable is not important for predicting the number of Spotify streams.  
+The goal is to remove nuisance variables.
+--
+Variable: TikTok Likes  
+Description: Number of likes a track has received on TikTok  
+Answer: F  
+Explanation: While TikTok likes may indicate general engagement, they are not directly tied to Spotify listening behavior. Likes don’t always translate into actual music streaming.  
+--
+Variable: All Time Rank  
+Description: Rank of the track on Spotify's all-time streaming chart (lower = more streamed)  
+Answer: T  
+Explanation: All Time Rank is a direct historical measure of how often a track has been streamed, making it a highly predictive feature for Spotify stream count.  
+--
+Variable: {feature}  
+Description: {description}  
+Answer:

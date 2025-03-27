@@ -80,6 +80,7 @@ def query_lmpriors(
 ):
     """
     Get LMpriors-selected features, ranked by criterion score, with progress saved incrementally.
+    Only save final sorted .txt file at the end.
     """
     os.makedirs(save_dir, exist_ok=True)
     pkl_path = os.path.join(save_dir, "selected_features.pkl")
@@ -100,8 +101,8 @@ def query_lmpriors(
             print("🧹 Wiping previous results.")
         with open(pkl_path, "wb") as f:
             pkl.dump([], f)
-        with open(txt_path, "w") as f:
-            pass
+        if os.path.exists(txt_path):
+            os.remove(txt_path)
 
     with open(feature_description_filename, "r") as f:
         feat_desc = json.load(f)
@@ -142,7 +143,7 @@ def query_lmpriors(
                     valid_token = True
                 else:
                     retries += 1
-                    print(f"Invalid token for '{feat}' → '{generated_token}'. Retrying ({retries}/{max_retries})...")
+                    print(f"⚠️ Invalid token for '{feat}' → '{generated_token}'. Retrying ({retries}/{max_retries})...")
 
             except Exception as e:
                 retries += 1
@@ -156,15 +157,17 @@ def query_lmpriors(
         if criterion >= threshold:
             selected_feature_tuples.append((feat, criterion))
 
-            # Save incrementally
+            # Save progress incrementally to .pkl
             with open(pkl_path, "wb") as f:
                 pkl.dump(selected_feature_tuples, f)
 
-            with open(txt_path, "a") as f:
-                f.write(f"{feat}\t{criterion:.4f}\n")
-
-    # Sort by descending criterion score
-    selected_feature_tuples.sort(key=lambda x: -x[1])
+    # Final sort and output
+    selected_feature_tuples.sort(key=lambda x: -x[1])  # descending by criterion
     selected_feature_ls = [feat for feat, _ in selected_feature_tuples]
+
+    # Save ranked feature names to .txt (one-time final write)
+    with open(txt_path, "w") as f:
+        for feat in selected_feature_ls:
+            f.write(feat + "\n")
 
     return selected_feature_ls

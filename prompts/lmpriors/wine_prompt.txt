@@ -1,0 +1,18 @@
+This is a set of physicochemical measurements taken from red and white vinho verde wine samples produced in northern Portugal. The goal is to build a machine learning model to predict whether a wine is high or low quality.
+T means the variable is important for predicting wine quality,  
+F means the variable is not important for predicting wine quality.  
+The goal is to remove nuisance variables.
+--
+Variable: Fixed acidity  
+Description: Concentration of non-volatile acids (primarily tartaric acid) in g/dm³  
+Answer: T  
+Explanation: Fixed acidity directly affects the taste and structure of wine. It plays a crucial role in determining balance and mouthfeel, both important for quality assessment.  
+--
+Variable: Density  
+Description: Density of the wine, closely related to sugar and alcohol content  
+Answer: T  
+Explanation: Density reflects the residual sugar and alcohol content, both of which affect the wine's body and sweetness—key quality indicators.  
+--
+Variable: {feature}  
+Description: {description}  
+Answer:

@@ -1,0 +1,18 @@
+This is a set of clinical and mutation features from a Glioma Grading dataset. The goal is to build a machine learning model to predict the glioma grade of a patient.
+T means the variable is important for predicting the glioma grade,  
+F means the variable is not important for predicting the glioma grade.  
+The goal is to remove nuisance variables.
+--
+Variable: Gender  
+Description: Gender (0 = "male"; 1 = "female")  
+Answer: F  
+Explanation: While gender has some association with glioma incidence, its direct relevance to glioma grade is weak. Studies suggest some sex-related molecular differences, but they are not strong determinants of grade.  
+--
+Variable: Age at diagnosis  
+Description: Age at diagnosis with the calculated number of days  
+Answer: T  
+Explanation: Age is a known prognostic factor for glioma. Older patients tend to have more aggressive, higher-grade tumors, making this variable important for grading.  
+--
+Variable: {feature}  
+Description: {description}  
+Answer:

@@ -1,0 +1,14 @@
+{
+    "Fixed acidity": "Concentration of non-volatile acids (primarily tartaric acid) in g/dm³",
+    "Volatile acidity": "Concentration of volatile acids (primarily acetic acid) in g/dm³, which can give a vinegary taste at high levels",
+    "Citric acid": "Concentration of citric acid in g/dm³, contributing to freshness and flavor",
+    "Residual sugar": "Amount of sugar remaining after fermentation, in g/dm³",
+    "Chlorides": "Concentration of salt (sodium chloride) in wine, measured in g/dm³",
+    "Free sulfur dioxide": "Amount of free SO₂ in mg/dm³, acting as an antimicrobial and antioxidant",
+    "Total sulfur dioxide": "Total SO₂ content in mg/dm³, including both bound and free forms",
+    "Density": "Density of the wine, which relates to sugar and alcohol content",
+    "pH": "pH value, indicating the wine's acidity level (lower pH = more acidic)",
+    "Sulphates": "Amount of potassium sulphate in g/dm³, contributing to antimicrobial stability",
+    "Alcohol": "Alcohol content of the wine (% by volume)"
+  }
+  

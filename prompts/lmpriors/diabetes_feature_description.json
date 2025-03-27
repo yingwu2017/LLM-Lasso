@@ -1,0 +1,11 @@
+{
+    "Pregnancies": "Number of times the patient has been pregnant",
+    "Glucose": "Plasma glucose concentration (mg/dL) after a 2-hour oral glucose tolerance test",
+    "BloodPressure": "Diastolic blood pressure (mm Hg)",
+    "SkinThickness": "Triceps skinfold thickness (mm), used to estimate body fat",
+    "Insulin": "2-hour serum insulin level (mu U/mL)",
+    "BMI": "Body mass index, calculated as weight in kg divided by the square of height in meters (kg/m^2)",
+    "DiabetesPedigreeFunction": "A function that scores the likelihood of diabetes based on family history",
+    "Age": "Age of the patient in years",
+    "Outcome": "Binary indicator of whether the patient has diabetes (1) or not (0)"
+  }

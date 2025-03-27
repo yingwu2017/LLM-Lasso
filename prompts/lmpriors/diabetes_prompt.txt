@@ -1,0 +1,18 @@
+This is a set of diagnostic variables collected from female patients of Pima Indian heritage who are at least 21 years old. The goal is to build a machine learning model to predict whether a patient has diabetes.
+T means the variable is important for predicting the patient’s diabetes status,
+F means the variable is not important for predicting the patient’s diabetes status.
+The goal is to remove nuisance variables.
+--
+Variable: SkinThickness  
+Description: Triceps skinfold thickness (mm), used to estimate body fat  
+Answer: F  
+Explanation: While body fat is related to metabolic health, skinfold thickness is a noisy measurement and does not directly correlate with diabetes diagnosis in a consistent or clinically significant way.  
+--
+Variable: Age  
+Description: Age of the patient in years  
+Answer: T  
+Explanation: The likelihood of developing type 2 diabetes increases with age, making this a relevant feature for prediction.  
+--
+Variable: {feature}
+Description: {description}
+Answer:
