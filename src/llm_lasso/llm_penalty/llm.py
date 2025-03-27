@@ -18,8 +18,10 @@ RETRY_DELAY = 5  # in seconds
 class LLMType(IntEnum):
     GPT4O = 0
     O1 = 1
+    O1PRO = 3
     OPENROUTER = 2
 
+OPENAI_TYPES = [LLMType.GPT4O, LLMType.O1, LLMType.O1PRO]
 
 @dataclass
 class CachedQuery:
@@ -105,8 +107,9 @@ class LLMQueryWrapperWithMemory:
         self.top_p = top_p
         self.repetition_penalty = repetition_penalty
 
-        if llm_type == LLMType.GPT4O or llm_type == LLMType.O1:
-            self.chat = ChatOpenAI(model=llm_name, temperature=temperature, top_p=top_p)
+        if llm_type in OPENAI_TYPES:
+            if llm_type != LLMType.O1PRO:
+                self.chat = ChatOpenAI(model=llm_name, temperature=temperature, top_p=top_p)
             self.openai_client = OpenAI()
         else:
             self.llm_type = LLMType.OPENROUTER
@@ -133,7 +136,7 @@ class LLMQueryWrapperWithMemory:
         """
         self.remember_outputs = remember_outputs
         self.default_output = default_output
-        if self.llm_type != LLMType.O1:
+        if self.llm_type != LLMType.O1 and self.llm_type != LLMType.O1PRO:
             self.memory = ConversationSummaryBufferMemory(llm=self.chat, max_token_limit=memory_size)
             self.memory.clear()
 
@@ -147,7 +150,7 @@ class LLMQueryWrapperWithMemory:
         """
         Are structured queries available?
         """
-        return self.llm_type == LLMType.GPT4O or self.llm_type == LLMType.O1
+        return self.llm_type in OPENAI_TYPES and self.llm_type != LLMType.O1PRO
     
     def _maybe_get_memory(self):
         if self.memory == None:
@@ -187,7 +190,7 @@ class LLMQueryWrapperWithMemory:
             format_class=response_format_class
         )
 
-        if self.llm_type != LLMType.O1:
+        if self.llm_type != LLMType.O1 and self.llm_name != LLMType.O1PRO:
             completion = self.openai_client.beta.chat.completions.parse(
                 model=self.llm_name,
                 messages=messages,
@@ -227,6 +230,12 @@ class LLMQueryWrapperWithMemory:
                 messages=messages
             )
             output = completion.choices[0].message.content
+        elif self.llm_type == LLMType.O1PRO:
+            completion = self.openai_client.create(
+                model=self.llm_name,
+                input = system_message + "\n" + full_prompt
+            )
+            output = completion.output[0].content[0].text
         elif self.llm_type == LLMType.GPT4O:
             messages = [
                 SystemMessage(content=system_message),

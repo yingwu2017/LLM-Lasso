@@ -19,7 +19,7 @@ class LLMParams:
     })
     model_type: str = field(default="gpt-4o", metadata={
         "help": "Type of model to use",
-        "choices": ["gpt-4o", "o1", "openrouter"]
+        "choices": ["gpt-4o", "o1", "o1-pro", "openrouter"]
     })
     model_name: str = field(default=None, metadata={
         "help": "Name of the model to use. For openrouter LLMs, defaults to \"meta-llama/Llama-3.1-8B-Instruct\""
@@ -38,6 +38,9 @@ class LLMParams:
             api_key = constants.OPENAI_API
         elif self.model_type == "o1":
             llm_type = LLMType.O1
+            api_key = constants.OPENAI_API
+        elif self.model_type == "o1-pro":
+            llm_type = LLMType.O1PRO
             api_key = constants.OPENAI_API
         else:
             llm_type = LLMType.OPENROUTER

@@ -1,0 +1,3 @@
+Retrieve information about gene AICDA, DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of AICDA's relevance to DLBCL and FL.
+Retrieve information about gene BCL6, DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of BCL6's relevance to DLBCL and MCL.
+Retrieve information about gene AASS, cHL (Classical Hodgkin Lymphoma) and MCL (mantle cell lymphoma), especially in the context of AASS's relevance to MCL and cHL.
