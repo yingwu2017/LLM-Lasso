@@ -80,7 +80,7 @@ For a tutorial on scraping the OMIM database and using the resulting documents f
     - **`pubmed_retrieve.py`**: prints out the information retrieved for a given gene through the Pubmed RAG pipeline.
 - **`src/llm_lasso`**: primary code for the `llm_lasso` package.
     - **`adversarial`**: adversarial feature name corruption.
-    - **`baselines`**: data-driven baseline and LLM-Score implemetation.
+    - **`baselines`**: data-driven baseline, LLM-Score, and LMPriors implemetation.
     - **`llm_penalty`**: generation of LLM-Lasso penalty factors, with and without RAG.
     - **`task_specific_lasso`**: running LASSO with LLM-generated penalty factors and plotting results.
     - **`data_splits.py`**: generation of random training and test splits, which are used for both the baselines and LLM-Lasso.
