@@ -180,3 +180,23 @@ def plot_llm_lasso_result(
         plt.legend(fontsize=14, bbox_to_anchor=(1.02, 0.5), loc="center left")
         plt.tick_params(axis='both', labelsize=12)  # Change font size for both x and y axes
         plt.title(f"LLM-LASSO Performance across {n_splits} Splits", fontdict={"size": 18})
+
+
+def get_means_at_pt(df: pd.DataFrame, models, methods, n_genes=4, metric="test_error"):
+    means = {}
+    stds = {}
+    for (model, method) in zip(models, methods):
+        x = df[(df["model"] == model) & (df["method"] == method)]
+
+        subset = None
+        for i in reversed(range(1,n_genes + 1)):  
+            if i in x["n_genes"].to_list():
+                subset = x[x["n_genes"] == i]
+                break
+
+        means[(model, method)] = subset[metric].mean()
+        if metric == "roc_auc":
+            means[(model, method)] = 1 - means[(model, method)]
+        stds[(model, method)] = subset[metric].std()
+    
+    return means, stds
