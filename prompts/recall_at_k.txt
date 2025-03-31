@@ -1,3 +1,108 @@
-Retrieve information about gene AICDA, DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of AICDA's relevance to DLBCL and FL.
-Retrieve information about gene BCL6, DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of BCL6's relevance to DLBCL and MCL.
-Retrieve information about gene AASS, cHL (Classical Hodgkin Lymphoma) and MCL (mantle cell lymphoma), especially in the context of AASS's relevance to MCL and cHL.
+Retrieve information about gene ['CD93'], DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of ['CD93']’s relevance to DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['RORC'], DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of ['RORC']’s relevance to DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['CEL'], DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of ['CEL']’s relevance to DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['GBA3'], DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of ['GBA3']’s relevance to DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['FAM184B'], DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of ['FAM184B']’s relevance to DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['LHFPL6'], DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of ['LHFPL6']’s relevance to DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['PELI1'], DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of ['PELI1']’s relevance to DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['XKR4'], DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of ['XKR4']’s relevance to DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['CALHM1'], DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma), especially in the context of ['CALHM1']’s relevance to DLBCL (diffuse large B-cell lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['FAM116B'], DLBCL and FL, especially in the context of ['FAM116B']’s relevance to DLBCL and FL.
+Retrieve information about gene ['USP13'], DLBCL and FL, especially in the context of ['USP13']’s relevance to DLBCL and FL.
+Retrieve information about gene ['NCAM1'], DLBCL and FL, especially in the context of ['NCAM1']’s relevance to DLBCL and FL.
+Retrieve information about gene ['RNASE6'], DLBCL and FL, especially in the context of ['RNASE6']’s relevance to DLBCL and FL.
+Retrieve information about gene ['CD300A'], DLBCL and FL, especially in the context of ['CD300A']’s relevance to DLBCL and FL.
+Retrieve information about gene ['GLCCI1'], DLBCL and FL, especially in the context of ['GLCCI1']’s relevance to DLBCL and FL.
+Retrieve information about gene ['KIF2C'], DLBCL and FL, especially in the context of ['KIF2C']’s relevance to DLBCL and FL.
+Retrieve information about gene ['CEL'], DLBCL and FL, especially in the context of ['CEL']’s relevance to DLBCL and FL.
+Retrieve information about gene ['TXNIP'], DLBCL and FL, especially in the context of ['TXNIP']’s relevance to DLBCL and FL.
+Retrieve information about gene ['H2AC6'], DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of ['H2AC6']’s relevance to DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma).
+Retrieve information about gene ['TPD52'], DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of ['TPD52']’s relevance to DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma).
+Retrieve information about gene ['LFNG'], DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of ['LFNG']’s relevance to DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma).
+Retrieve information about gene ['MDM2'], DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of ['MDM2']’s relevance to DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma).
+Retrieve information about gene ['CARMIL1'], DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of ['CARMIL1']’s relevance to DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma).
+Retrieve information about gene ['EVI2B'], DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of ['EVI2B']’s relevance to DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma).
+Retrieve information about gene ['USMG5'], DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of ['USMG5']’s relevance to DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma).
+Retrieve information about gene ['VNN2'], DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of ['VNN2']’s relevance to DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma).
+Retrieve information about gene ['CD1B'], DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma), especially in the context of ['CD1B']’s relevance to DLBCL (diffuse large B-cell lymphoma) and MCL (mantle cell lymphoma).
+Retrieve information about gene ['ITM2B'], DLBCL and MCL, especially in the context of ['ITM2B']’s relevance to DLBCL and MCL.
+Retrieve information about gene ['SLC38A1'], DLBCL and MCL, especially in the context of ['SLC38A1']’s relevance to DLBCL and MCL.
+Retrieve information about gene ['B2M'], DLBCL and MCL, especially in the context of ['B2M']’s relevance to DLBCL and MCL.
+Retrieve information about gene ['DHRS9'], DLBCL and MCL, especially in the context of ['DHRS9']’s relevance to DLBCL and MCL.
+Retrieve information about gene ['RABAC1'], DLBCL and MCL, especially in the context of ['RABAC1']’s relevance to DLBCL and MCL.
+Retrieve information about gene ['RNASE6'], DLBCL and MCL, especially in the context of ['RNASE6']’s relevance to DLBCL and MCL.
+Retrieve information about gene ['RC3H2'], DLBCL and MCL, especially in the context of ['RC3H2']’s relevance to DLBCL and MCL.
+Retrieve information about gene ['HJURP'], DLBCL and MCL, especially in the context of ['HJURP']’s relevance to DLBCL and MCL.
+Retrieve information about gene ['ICAM1'], DLBCL and MCL, especially in the context of ['ICAM1']’s relevance to DLBCL and MCL.
+Retrieve information about gene ['HSP90B1'], DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma), especially in the context of ['HSP90B1']’s relevance to DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma).
+Retrieve information about gene ['DNAJB9'], DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma), especially in the context of ['DNAJB9']’s relevance to DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma).
+Retrieve information about gene ['TAAR5'], DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma), especially in the context of ['TAAR5']’s relevance to DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma).
+Retrieve information about gene ['HIC1'], DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma), especially in the context of ['HIC1']’s relevance to DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma).
+Retrieve information about gene ['MAD2L1'], DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma), especially in the context of ['MAD2L1']’s relevance to DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma).
+Retrieve information about gene ['RHOF'], DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma), especially in the context of ['RHOF']’s relevance to DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma).
+Retrieve information about gene ['CD9'], DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma), especially in the context of ['CD9']’s relevance to DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma).
+Retrieve information about gene ['GNG10'], DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma), especially in the context of ['GNG10']’s relevance to DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma).
+Retrieve information about gene ['SCARA3'], DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma), especially in the context of ['SCARA3']’s relevance to DLBCL (diffuse large B-cell lymphoma) and cHL (classical Hodgkin's lymphoma).
+Retrieve information about gene ['RPL14'], DLBCL and cHL, especially in the context of ['RPL14']’s relevance to DLBCL and cHL.
+Retrieve information about gene ['EIF4A2'], DLBCL and cHL, especially in the context of ['EIF4A2']’s relevance to DLBCL and cHL.
+Retrieve information about gene ['AUH'], DLBCL and cHL, especially in the context of ['AUH']’s relevance to DLBCL and cHL.
+Retrieve information about gene ['LYPLA1'], DLBCL and cHL, especially in the context of ['LYPLA1']’s relevance to DLBCL and cHL.
+Retrieve information about gene ['IDH2'], DLBCL and cHL, especially in the context of ['IDH2']’s relevance to DLBCL and cHL.
+Retrieve information about gene ['RPL24'], DLBCL and cHL, especially in the context of ['RPL24']’s relevance to DLBCL and cHL.
+Retrieve information about gene ['SORL1'], DLBCL and cHL, especially in the context of ['SORL1']’s relevance to DLBCL and cHL.
+Retrieve information about gene ['PRG1'], DLBCL and cHL, especially in the context of ['PRG1']’s relevance to DLBCL and cHL.
+Retrieve information about gene ['CDKN3'], DLBCL and cHL, especially in the context of ['CDKN3']’s relevance to DLBCL and cHL.
+Retrieve information about gene ['OR5M3'], MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia), especially in the context of ['OR5M3']’s relevance to MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia).
+Retrieve information about gene ['DOCK10'], MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia), especially in the context of ['DOCK10']’s relevance to MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia).
+Retrieve information about gene ['MMP1'], MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia), especially in the context of ['MMP1']’s relevance to MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia).
+Retrieve information about gene ['RPL7A'], MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia), especially in the context of ['RPL7A']’s relevance to MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia).
+Retrieve information about gene ['C11orf41'], MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia), especially in the context of ['C11orf41']’s relevance to MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia).
+Retrieve information about gene ['DHRS3'], MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia), especially in the context of ['DHRS3']’s relevance to MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia).
+Retrieve information about gene ['CCR4'], MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia), especially in the context of ['CCR4']’s relevance to MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia).
+Retrieve information about gene ['ATP5F1C'], MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia), especially in the context of ['ATP5F1C']’s relevance to MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia).
+Retrieve information about gene ['THEMIS2'], MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia), especially in the context of ['THEMIS2']’s relevance to MCL (mantle cell lymphoma) and CLL (Chronic Lymphocytic Leukemia).
+Retrieve information about gene ['PTK7'], MCL and CLL, especially in the context of ['PTK7']’s relevance to MCL and CLL.
+Retrieve information about gene ['CD8A'], MCL and CLL, especially in the context of ['CD8A']’s relevance to MCL and CLL.
+Retrieve information about gene ['GLUL'], MCL and CLL, especially in the context of ['GLUL']’s relevance to MCL and CLL.
+Retrieve information about gene ['TOX'], MCL and CLL, especially in the context of ['TOX']’s relevance to MCL and CLL.
+Retrieve information about gene ['ZNF771'], MCL and CLL, especially in the context of ['ZNF771']’s relevance to MCL and CLL.
+Retrieve information about gene ['CALM2'], MCL and CLL, especially in the context of ['CALM2']’s relevance to MCL and CLL.
+Retrieve information about gene ['CD68'], MCL and CLL, especially in the context of ['CD68']’s relevance to MCL and CLL.
+Retrieve information about gene ['AIMP2'], MCL and CLL, especially in the context of ['AIMP2']’s relevance to MCL and CLL.
+Retrieve information about gene ['OR6C1'], MCL and CLL, especially in the context of ['OR6C1']’s relevance to MCL and CLL.
+Retrieve information about gene ['RYR3'], glioblastoma and anaplastic oligodendroglioma, especially in the context of ['RYR3']’s relevance to glioblastoma and anaplastic oligodendroglioma.
+Retrieve information about gene ['HSBP1'], glioblastoma and anaplastic oligodendroglioma, especially in the context of ['HSBP1']’s relevance to glioblastoma and anaplastic oligodendroglioma.
+Retrieve information about gene ['CALR'], glioblastoma and anaplastic oligodendroglioma, especially in the context of ['CALR']’s relevance to glioblastoma and anaplastic oligodendroglioma.
+Retrieve information about gene ['AFAP1'], glioblastoma and anaplastic oligodendroglioma, especially in the context of ['AFAP1']’s relevance to glioblastoma and anaplastic oligodendroglioma.
+Retrieve information about gene ['CXCL13'], glioblastoma and anaplastic oligodendroglioma, especially in the context of ['CXCL13']’s relevance to glioblastoma and anaplastic oligodendroglioma.
+Retrieve information about gene ['IRAG1'], glioblastoma and anaplastic oligodendroglioma, especially in the context of ['IRAG1']’s relevance to glioblastoma and anaplastic oligodendroglioma.
+Retrieve information about gene ['TOP1'], glioblastoma and anaplastic oligodendroglioma, especially in the context of ['TOP1']’s relevance to glioblastoma and anaplastic oligodendroglioma.
+Retrieve information about gene ['KIF2C'], glioblastoma and anaplastic oligodendroglioma, especially in the context of ['KIF2C']’s relevance to glioblastoma and anaplastic oligodendroglioma.
+Retrieve information about gene ['CD320'], glioblastoma and anaplastic oligodendroglioma, especially in the context of ['CD320']’s relevance to glioblastoma and anaplastic oligodendroglioma.
+Retrieve information about gene ['COL3A1'], early T cell precursor (ETP) T-ALL and non-ETP T-ALL, especially in the context of ['COL3A1']’s relevance to early T cell precursor (ETP) T-ALL and non-ETP T-ALL.
+Retrieve information about gene ['MS4A1'], early T cell precursor (ETP) T-ALL and non-ETP T-ALL, especially in the context of ['MS4A1']’s relevance to early T cell precursor (ETP) T-ALL and non-ETP T-ALL.
+Retrieve information about gene ['BHLHE41'], early T cell precursor (ETP) T-ALL and non-ETP T-ALL, especially in the context of ['BHLHE41']’s relevance to early T cell precursor (ETP) T-ALL and non-ETP T-ALL.
+Retrieve information about gene ['COL9A3'], early T cell precursor (ETP) T-ALL and non-ETP T-ALL, especially in the context of ['COL9A3']’s relevance to early T cell precursor (ETP) T-ALL and non-ETP T-ALL.
+Retrieve information about gene ['GPR183'], early T cell precursor (ETP) T-ALL and non-ETP T-ALL, especially in the context of ['GPR183']’s relevance to early T cell precursor (ETP) T-ALL and non-ETP T-ALL.
+Retrieve information about gene ['ANK2'], early T cell precursor (ETP) T-ALL and non-ETP T-ALL, especially in the context of ['ANK2']’s relevance to early T cell precursor (ETP) T-ALL and non-ETP T-ALL.
+Retrieve information about gene ['ELL3'], early T cell precursor (ETP) T-ALL and non-ETP T-ALL, especially in the context of ['ELL3']’s relevance to early T cell precursor (ETP) T-ALL and non-ETP T-ALL.
+Retrieve information about gene ['PLAAT4'], early T cell precursor (ETP) T-ALL and non-ETP T-ALL, especially in the context of ['PLAAT4']’s relevance to early T cell precursor (ETP) T-ALL and non-ETP T-ALL.
+Retrieve information about gene ['ZNF771'], early T cell precursor (ETP) T-ALL and non-ETP T-ALL, especially in the context of ['ZNF771']’s relevance to early T cell precursor (ETP) T-ALL and non-ETP T-ALL.
+Retrieve information about gene ['SRRM2'], tFL (transformed follicular lymphoma) and FL (follicular lymphoma), especially in the context of ['SRRM2']’s relevance to tFL (transformed follicular lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['HSP90AB1'], tFL (transformed follicular lymphoma) and FL (follicular lymphoma), especially in the context of ['HSP90AB1']’s relevance to tFL (transformed follicular lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['MFAP2'], tFL (transformed follicular lymphoma) and FL (follicular lymphoma), especially in the context of ['MFAP2']’s relevance to tFL (transformed follicular lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['AXL'], tFL (transformed follicular lymphoma) and FL (follicular lymphoma), especially in the context of ['AXL']’s relevance to tFL (transformed follicular lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['PTP4A3'], tFL (transformed follicular lymphoma) and FL (follicular lymphoma), especially in the context of ['PTP4A3']’s relevance to tFL (transformed follicular lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['MAP3K8'], tFL (transformed follicular lymphoma) and FL (follicular lymphoma), especially in the context of ['MAP3K8']’s relevance to tFL (transformed follicular lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['YWHAZ'], tFL (transformed follicular lymphoma) and FL (follicular lymphoma), especially in the context of ['YWHAZ']’s relevance to tFL (transformed follicular lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['LOC283710'], tFL (transformed follicular lymphoma) and FL (follicular lymphoma), especially in the context of ['LOC283710']’s relevance to tFL (transformed follicular lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['LIMA1'], tFL (transformed follicular lymphoma) and FL (follicular lymphoma), especially in the context of ['LIMA1']’s relevance to tFL (transformed follicular lymphoma) and FL (follicular lymphoma).
+Retrieve information about gene ['CYCS'], tFL and FL, especially in the context of ['CYCS']’s relevance to tFL and FL.
+Retrieve information about gene ['CFAP251|WDR66'], tFL and FL, especially in the context of ['CFAP251|WDR66']’s relevance to tFL and FL.
+Retrieve information about gene ['CXXC5'], tFL and FL, especially in the context of ['CXXC5']’s relevance to tFL and FL.
+Retrieve information about gene ['ITIH5'], tFL and FL, especially in the context of ['ITIH5']’s relevance to tFL and FL.
+Retrieve information about gene ['CD22'], tFL and FL, especially in the context of ['CD22']’s relevance to tFL and FL.
+Retrieve information about gene ['HRK'], tFL and FL, especially in the context of ['HRK']’s relevance to tFL and FL.
+Retrieve information about gene ['NOTCH2'], tFL and FL, especially in the context of ['NOTCH2']’s relevance to tFL and FL.
+Retrieve information about gene ['CCR1'], tFL and FL, especially in the context of ['CCR1']’s relevance to tFL and FL.
+Retrieve information about gene ['ZNF767'], tFL and FL, especially in the context of ['ZNF767']’s relevance to tFL and FL.

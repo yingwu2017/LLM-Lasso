@@ -19,7 +19,8 @@ def get_rag_context(
     summarized_gene_docs = False,
     original_docs = True,
     default_num_docs = 3,
-    small = False
+    small = False,
+    prompt_constr = False
 ):
     """
     Retrieve RAG context for gene data, combining three different RAG processes.
@@ -51,7 +52,7 @@ def get_rag_context(
         docs = retrieval_docs(
             batch_genes, category,
             vectorstore.as_retriever(search_kwargs={"k": default_num_docs}),
-            small=small
+            small=small, prompt_constr=prompt_constr
         )
         unique_docs = get_unique_docs(docs)
         context = "\n".join([doc.page_content for doc in unique_docs])

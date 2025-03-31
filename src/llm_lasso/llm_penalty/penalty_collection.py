@@ -52,6 +52,9 @@ class PenaltyCollectionParams:
         "help": "Number of tokens in the memory"})
     shuffle: bool = field(default=False, metadata={
         "help": "Whether to shuffle the feature names for each trial"})
+    rag_prompt_construction: bool = field(default=False, metadata={
+        "help": "Whether to use Langchain's prompt construction framework for RAG"
+    })
 
     def has_rag(self):
         return self.summarized_gene_doc_rag or \
@@ -203,6 +206,7 @@ def collect_penalties(
                 original_docs=params.omim_rag,
                 default_num_docs=params.omim_rag_num_docs,
                 small=params.small,
+                prompt_constr=params.rag_prompt_construction
             )
             args.append((context, query, params, model.get_config(), batch_features))
         if parallel: 

@@ -231,7 +231,7 @@ class LLMQueryWrapperWithMemory:
             )
             output = completion.choices[0].message.content
         elif self.llm_type == LLMType.O1PRO:
-            completion = self.openai_client.create(
+            completion = self.openai_client.responses.create(
                 model=self.llm_name,
                 input = system_message + "\n" + full_prompt
             )

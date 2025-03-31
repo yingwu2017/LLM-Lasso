@@ -1,1 +1,1 @@
-Retrieve information about gene {genes}, {category}, especially in the context of {genes}’s relevance to {category}.
+Retrieve information about gene {genes}’s relevance to {category}.

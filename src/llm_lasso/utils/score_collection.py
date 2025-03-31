@@ -7,6 +7,9 @@ import pickle as pkl
 import re
 import sys
 import numpy as np
+from langchain.retrievers.multi_query import MultiQueryRetriever
+from langchain_openai import ChatOpenAI
+
 
 def create_general_prompt(prompt_dir, category, genes, singular=False, display=False):
     """
@@ -215,7 +218,10 @@ def find_max_gene(batch_genes, results):
 
 
 
-def retrieval_docs(batch_genes, category, retriever, small=False):
+def retrieval_docs(
+        batch_genes, category, retriever,
+        small=False, prompt_constr = False
+    ):
     """
     Retrieve relevant documents for a batch of genes under a specified category.
 
@@ -248,15 +254,27 @@ def retrieval_docs(batch_genes, category, retriever, small=False):
     """
     docs = []
     prompt_dir = 'prompts/retrieval_prompt.txt'
+
+    if prompt_constr:
+        llm = ChatOpenAI(temperature=0)
+        retriever = MultiQueryRetriever.from_llm(
+            retriever=retriever, llm=llm
+        )
     
     if not small:
         for gene in batch_genes:
             retrieval_query = create_general_prompt(prompt_dir, category, [gene], True)
-            retrieved_docs = retriever.get_relevant_documents(retrieval_query)
+            if prompt_constr:
+                retrieved_docs = retriever.invoke(retrieval_query)
+            else:
+                retrieved_docs = retriever.get_relevant_documents(retrieval_query)
             docs.extend(retrieved_docs)
     else:
         retrieval_query = create_general_prompt(prompt_dir, category, batch_genes)
-        retrieved_docs = retriever.get_relevant_documents(retrieval_query)
+        if prompt_constr:
+            retrieved_docs = retriever.invoke(retrieval_query)
+        else:
+            retrieved_docs = retriever.get_relevant_documents(retrieval_query)
         docs.extend(retrieved_docs)
 
     return docs

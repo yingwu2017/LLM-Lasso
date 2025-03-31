@@ -5,6 +5,8 @@ This script offers two additional features to process the retrieval information 
 """
 from llm_lasso.utils.omim import get_mim_number, fetch_omim_data, parse_omim_response
 from llm_lasso.llm_penalty.llm import LLMQueryWrapperWithMemory
+from langchain.retrievers.multi_query import MultiQueryRetriever
+from langchain_openai import ChatOpenAI
 
 
 def get_summarized_gene_docs(
@@ -33,6 +35,7 @@ def get_filtered_cancer_docs_and_genes_found(
     retriever, # VectorStoreRetriver
     model: LLMQueryWrapperWithMemory,
     category: str,
+    prompt_constr = False
 ) -> tuple[str, set[str]]:
 
     retrieval_prompt = f"""
@@ -44,7 +47,16 @@ def get_filtered_cancer_docs_and_genes_found(
     Do not skip documents or add any of your own commentary.
     """
 
-    docs = retriever.get_relevant_documents(retrieval_prompt)
+    if prompt_constr:
+        llm = ChatOpenAI(temperature=0)
+        retriever = MultiQueryRetriever.from_llm(
+            retriever=retriever, llm=llm
+        )
+
+    if prompt_constr:
+        docs = retriever.invoke(retrieval_prompt)
+    else:
+        docs = retriever.get_relevant_documents(retrieval_prompt)
     docs_w_genes = [
         doc for doc in docs 
             if any([gene.upper() in str(doc).upper() for gene in batch_genes])

@@ -27,7 +27,6 @@ class Arguments:
 def main(args: Arguments):
     with open(args.testfile) as f:
         test_queries = [line.strip() for line in f.readlines()]
-    print(test_queries)
     embeddings = OpenAIEmbeddings()
     vectorstore = Chroma(persist_directory=constants.OMIM_PERSIST_DIRECTORY, embedding_function=embeddings)
     test_embeds = torch.Tensor(embeddings.embed_documents(test_queries)).to(args.device)
@@ -35,12 +34,11 @@ def main(args: Arguments):
     all_docs = vectorstore._collection.get(include=[])
     all_ids = all_docs["ids"]
 
-
     ground_truth = []
-    for j in range(test_embeds.shape[0]):
+    for j in tqdm(range(test_embeds.shape[0])):
         test = test_embeds[j, :]
         cosine = torch.zeros(len(all_ids), device=args.device)
-        for i in tqdm(range(0, len(all_ids), args.batch_size)):
+        for i in range(0, len(all_ids), args.batch_size):
             ids = all_ids[i:i+args.batch_size]
             embed = torch.from_numpy(vectorstore._collection.get(ids, include=["embeddings"])["embeddings"]).to(args.device)
 
@@ -61,5 +59,5 @@ if __name__ == "__main__":
     main(args)
 
 """
-python scripts/omim_recall.py --testfile prompts/recall_at_k.txt --k 1 5 10 20 50 100 1000
+python scripts/omim_recall.py --testfile prompts/recall_at_k.txt --k 1 3 5 8 10 25 50 75 100 500 1000 5000 --device cuda:7
 """
