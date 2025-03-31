@@ -2,19 +2,22 @@
 Implements the abalation experiment pipeline.
 """
 import os
+import sys
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from llm_lasso.task_specific_lasso.llm_lasso import run_repeated_llm_lasso_cv
+from llm_lasso.task_specific_lasso.llm_lasso import run_repeated_llm_lasso_cv, PenaltyType
 from llm_lasso.llm_penalty.llm import LLMQueryWrapperWithMemory
 from llm_lasso.data_splits import read_train_test_splits
 from llm_lasso.llm_penalty.penalty_collection import collect_penalties, PenaltyCollectionParams
+sys.path.insert(0, '..')
 import constants
 
 # define plotting color schemes
 LASSO_COLOR = ["#999999"]
 LLM_LASSO_COLORS = ["#D55E00", "#CC79A7", "#E69F00"]
+N_SPLITS = 10
 
 import os
 import numpy as np
@@ -83,7 +86,7 @@ def create_score_dict(save_dir, methods, mode="rag"):
     
     score_dict = {}
     for method in methods:
-        filename = f"temp_{method}.txt"
+        filename = f"{method}.txt"
         full_path = os.path.join(sub_dir, filename)
 
         if not os.path.isfile(full_path):
@@ -105,35 +108,28 @@ def get_comp_df(importance_scores_dict, train_test_filename):
     res_df = run_repeated_llm_lasso_cv(
         x_train_splits=x_train, x_test_splits=x_test,
         y_train_splits=y_train, y_test_splits=y_test,
-        importance_scores_list=importance_scores_dict,
+        scores=importance_scores_dict,
         feature_baseline={},
-        baseline_names=[],
-        model_names=method_names,
-        methods=methods,
-        n_splits=10,
+        n_splits=N_SPLITS,
         folds_cv=10,
-        score_type = "pf",
+        score_type = PenaltyType.PF,
         lambda_min_ratio=0.001,
         n_threads=8,
-        plot_error_bars=False,
-        bolded_methods=["1/imp - rag"],
-        max_imp_pow=1,
-        regression=True
+        regression = False
     )
     return res_df
 
-def get_means_at_pt(df: pd.DataFrame, models, methods, n_genes=4, metric="test_error"):
+def get_means_at_pt(df: pd.DataFrame, models, methods, n_features=4, metric="test_error"):
     means = {}
     stds = {}
     for (model, method) in zip(models, methods):
         x = df[(df["model"] == model) & (df["method"] == method)]
-
         subset = None
-        for i in reversed(range(1,n_genes + 1)):  
-            if i in x["n_genes"].to_list():
-                subset = x[x["n_genes"] == i]
+        for i in reversed(range(1,n_features + 1)):  
+            if i in x["n_features"].to_list():
+                subset = x[x["n_features"] == i]
                 break
-
+        # print(model, method, subset)
         means[(model, method)] = subset[metric].mean()
         if metric == "roc_auc":
             means[(model, method)] = 1 - means[(model, method)]
@@ -144,14 +140,12 @@ def get_means_at_pt(df: pd.DataFrame, models, methods, n_genes=4, metric="test_e
 def plot_ablation(importance_scores_dict, comp_df, metric_type, metric_label, title):
     method_names = list(importance_scores_dict.keys())
     means0, stds0 = get_means_at_pt(
-        comp_df, method_names + ["Deepseek"], ["1/imp"] * len(method_names) + ["Lasso"],
+        comp_df, method_names, ["1/imp"] * len(method_names) + ["Lasso"],
         4, metric_type
     )
     means = {name: means0[(name, "1/imp")] for name in method_names}
-    means["Lasso"] = means0[("Deepseek", "Lasso")]
 
     stds = {name: stds0[(name, "1/imp")] for name in method_names}
-    stds["Lasso"] = stds0[("Deepseek", "Lasso")]
 
 
     # Extract feature names, mean values, and standard deviations
