@@ -7,8 +7,10 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from llm_lasso.task_specific_lasso.llm_lasso import run_repeated_llm_lasso_cv, PenaltyType
-from llm_lasso.llm_penalty.llm import LLMQueryWrapperWithMemory
+import sys
+sys.path.append('.')
+from llm_lasso.task_specific_lasso.llm_lasso import run_repeated_llm_lasso_cv
+from llm_lasso.llm_penalty.llm import LLMQueryWrapperWithMemory,LLMType
 from llm_lasso.data_splits import read_train_test_splits
 from llm_lasso.llm_penalty.penalty_collection import collect_penalties, PenaltyCollectionParams
 sys.path.insert(0, '..')
@@ -23,7 +25,9 @@ import os
 import numpy as np
 from tqdm import tqdm
 
-def temp_scores(temp_ls, category, feature_names, prompt_filename, vectorstore, save_dir="ablation_scores/", model='gpt-4o'):
+def temp_scores(temp_ls, category, feature_names, prompt_filename, 
+                vectorstore, save_dir="ablation_scores/", 
+                llm_type=LLMType.GPT4O, model='gpt-4o'):
     """
     Score collection for ablating on temperature, with and without RAG.
     """
@@ -37,7 +41,9 @@ def temp_scores(temp_ls, category, feature_names, prompt_filename, vectorstore, 
             prompt_file=prompt_filename,
             save_dir=save_dir,
             vectorstore=vectorstore,
-            model=LLMQueryWrapperWithMemory(llm_name=model, temperature=temp),
+            model=LLMQueryWrapperWithMemory(
+                llm_type=llm_type, llm_name=model, temperature=temp,
+                api_key=constants.OPENAI_API),
             params=PenaltyCollectionParams(),  # no RAG
             omim_api_key=constants.OMIM_KEYS[0],
             n_threads=10,
@@ -57,7 +63,8 @@ def temp_scores(temp_ls, category, feature_names, prompt_filename, vectorstore, 
             prompt_file=prompt_filename,
             save_dir=save_dir,
             vectorstore=vectorstore,
-            model=LLMQueryWrapperWithMemory(llm_name=model, temperature=temp),
+            model=LLMQueryWrapperWithMemory(llm_type=llm_type, llm_name=model, temperature=temp,
+                api_key=constants.OPENAI_API),
             params=PenaltyCollectionParams(omim_rag=True),  # with RAG
             omim_api_key=constants.OMIM_KEYS[0],
             n_threads=10,
