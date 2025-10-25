@@ -31,7 +31,13 @@ Unlike traditional feature selection methods that rely solely on numerical data,
     ```
     or the equivalent for `conda`.
 
-4. Copy the file `sample_constants.py` to `_my_constants.py` and populate relevant API keys.
+   ** Ying's comments: **
+ 
+   I managed to install `adelie` as an editable package using the command above but failed so many times.
+     
+   A tricky way to achieve the same goal is to directly use `conda install adelie` (older version of published lib) and then edit relevant files in the site packages files for the virtual envs when needed. 
+
+5. Copy the file `sample_constants.py` to `_my_constants.py` and populate relevant API keys.
 
 The values from `_my_constants.py` are automatically loaded into `constants.py`.
 
@@ -72,7 +78,7 @@ For a tutorial on scraping the OMIM database and using the resulting documents f
     - **`small_scale_splits.py`**: generates random training and test splits for the small-scale datasets.
     Test error and AUROC results downstream are taken as averages over these splits.
     - **`run_baselines.py`**: runs the data-driven baseline methods on train/test splits generated, e.g., by `small_scale_splits.py`.
-    - **`llm_score.py`**: generates importance scores via the LLM-Score baseline.
+    - **`llm_score.py`**: generates importance scores via the LLM-Score baseline. （It seems that in this script all datasets are using the same system message, i.e., the bank dataset?）
     - **`llm_lasso_scores.py`** generates LLM-Lasso penalty factors.
     
     The following scripts may also be useful:

@@ -88,6 +88,7 @@ def query_scores(
             prompt = create_general_prompt(prompt_filename, category, batch_features)
             system_message = "For each feature input by the user, your task is to provide a feature importance score (between 0 and 1; larger value indicates greater importance) for predicting whether an individual will subscribe to a term deposit and a reasoning behind how the importance score was assigned."
 
+            
             # Query the LLM, with special handling if the LLM allows
             # structured queries
             batch_scores_partial, response = query_scores_with_retries(
